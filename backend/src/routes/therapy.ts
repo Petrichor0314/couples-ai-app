@@ -19,4 +19,11 @@ router.get(
   therapyController.getFeedback.bind(therapyController)
 );
 
+// Debug endpoint to see user data (remove in production)
+router.get(
+  "/debug/:roomId/:userId",
+  validateRoomAndUser,
+  therapyController.debugUserData.bind(therapyController)
+);
+
 export default router;

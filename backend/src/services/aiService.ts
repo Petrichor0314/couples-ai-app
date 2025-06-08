@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { Message } from "../types";
+require("dotenv").config();
 
 const aiPrompts = require("../config/aiPrompts");
 
@@ -24,12 +25,14 @@ export class AIService {
   async generateNextQuestion(
     round: number,
     userHistory: Message[],
-    partnerContext: Message[]
+    partnerContext: Message[],
+    currentRoundAnswers: Message[]
   ): Promise<string> {
     const prompt = aiPrompts.getPromptForRound(
       round,
       userHistory,
-      partnerContext
+      partnerContext,
+      currentRoundAnswers
     );
 
     try {
